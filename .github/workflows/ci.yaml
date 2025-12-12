@@ -11,8 +11,8 @@ jobs:
     strategy:
       matrix:
         include:
-        # MinGW/LLVM libs using MSVCRT
-        - name: 🏁 Windows - MinGW/LLVM (MSVCRT) x86_64
+        # MinGW/LLVM libs using UCRT
+        - name: 🏁 Windows - MinGW/LLVM (UCRT) x86_64
           platform: windows
           os: windows-2019
           artifact-name: godot-nir-static-x86_64-llvm-release
@@ -60,7 +60,7 @@ jobs:
       - name: Setup MinGW/LLVM
         if: ${{ matrix.platform == 'windows' && matrix.llvm == 'yes' }}
         run: |
-          curl -L -O https://github.com/mstorsjo/llvm-mingw/releases/download/20250910/llvm-mingw-20250910-msvcrt-x86_64.zip
+          curl -L -O https://github.com/mstorsjo/llvm-mingw/releases/download/20250910/llvm-mingw-20250910-ucrt-x86_64.zip
           unzip -q llvm-mingw-*.zip
           rm llvm-mingw-*.zip
           mv llvm-mingw-* "$HOME/llvm-mingw"
